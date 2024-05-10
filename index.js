@@ -3,6 +3,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const userRoute = require('./routes/user');
 const blogRoute = require('./routes/blog');
+const Blog = require('./models/blog');
 
 const mongoose = require('mongoose');
 const checkforAuthentication = require('./middlewares/authentication');
@@ -17,9 +18,13 @@ mongoose.connect("mongodb://localhost:27017/Blogify")
 app.set('view engine', 'ejs');
 app.set('views', path.resolve('./views'));
 
-app.get('/', (req, res) => {
+app.use(express.static(path.resolve('./public')))
+
+app.get('/', async (req, res) => {
+    const allBlogs = await Blog.find({});
     res.render("home",{
         user: req.user,
+        blogs: allBlogs,
         
     });
 })
