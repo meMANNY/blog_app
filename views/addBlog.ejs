@@ -7,8 +7,12 @@
 <body>
     <%- include('./partials/nav') %>
 
-    <div class="container mt-4">
-        <form action="">
+    <div class="container mt-3">
+        <form action="/blog" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="coverImage" class="form-label" >Cover Image</label>
+                <input type="file" class="form-control" id="coverImage"  name="coverImage" aria-describedby="coverImage">
+            </div>
             <div class="mb-3">
                 <label for="Title" class="form-label" >Title</label>
                 <input type="text" class="form-control" id="Title"  name="Title" aria-describedby="Title">
