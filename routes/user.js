@@ -26,7 +26,12 @@ router.post("/signin", async(req,res)=>{
             "Invalid email or password"})
     }
 
-})
+});
+
+router.get("/logout", (req,res)=>{
+    res.clearCookie("token");
+    return res.redirect("/");
+});
 
 router.post("/signup", async(req,res)=>{
     const{fullname, email, password} = req.body;
