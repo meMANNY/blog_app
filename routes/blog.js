@@ -5,6 +5,7 @@ const multer = require("multer");
 const path = require("path");
 
 const Blog = require('../models/blog');
+const user = require('../models/user');
 const storage = multer.diskStorage({
     destination: function(req,file,cb){
         cb(null,path.resolve(`./public/uploads/`))
@@ -24,6 +25,10 @@ router.get("/add-new", (req, res) => {
 });
     router.get("/:id", async(req,res)=>{
         const blog = await Blog.findById(req.params.id);
+        return res.render("blog",{
+            user: req.user,
+            blog,
+        })
     } )
 router.post("/", upload.single("coverImage"), async (req,res)=>{
     const {title,body} = req.body;
