@@ -18,9 +18,9 @@
     </div>
 
     <div class="container mt-4">
-        <h1>Comments</h1>
+        <h1>Comments (<%= comments.length() %>)</h1>
         <% if (locals.user) { %>
-            <form action="/user/signin" method="post">
+            <form action="/comment<%= blog._id %>" method="post">
                 <div class="mb-3">
                 <input name = "content" type="text" class="form-control" placeholder="Enter your comment">
                 <button type="submit" class="btn btn-sm btn-primary">Add</button>
